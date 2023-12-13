@@ -6,7 +6,18 @@ from routes.api import router as api_router
 app = FastAPI()
 
 
-origins = ["http://localhost:8005", "http://localhost:5173"]
+origins = [
+    "http://localhost:8005", 
+    "http://localhost:5173", 
+    "http://192.168.0.100:8080",
+    "http://192.168.0.100:5173",
+    "http://192.168.18.92:8080",
+    "http://192.168.18.92:5173",
+    "https://192.168.0.100:8080",
+    "https://192.168.0.100:5173",
+    "https://192.168.18.92:8080",
+    "https://192.168.18.92:5173",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
