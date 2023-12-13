@@ -16,9 +16,28 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
+    depends_on:
+      - db-thesis
   mqtt-broker:
     image: eclipse-mosquitto:2.0.15
     volumes:
       - ./mqtt:/mosquitto/config
     ports:
       - 1883:1883
+  backend-thesis:
+    image: backend-thesis
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8005:8005
+    depends_on:
+      - mqtt-broker
+      - db-thesis
+  frontend-thesis:
+    image: frontend-thesis
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80

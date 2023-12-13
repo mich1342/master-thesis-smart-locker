@@ -10,7 +10,7 @@ def connect():
             database='postgres',
             user='postrges',
             password='postgres',
-            host='localhost',
+            host='db-thesis',
             port='5432'
             )
         cur = con.cursor()

@@ -18,7 +18,7 @@ router = APIRouter(
 )
 
 mqtt_config = MQTTConfig(
-    host="localhost",
+    host="mqtt-broker",
     port=1883,
     keepalive=60
 )
@@ -199,6 +199,7 @@ class OpenDoor(BaseModel):
 
 @router.post('/open_door', status_code=200)
 async def open_door(open_door: OpenDoor, response:Response):
+    print(open_door)
     try:
         cur.execute(f'''
                     SELECT 
