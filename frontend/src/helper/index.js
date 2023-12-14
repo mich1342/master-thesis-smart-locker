@@ -1,3 +1,3 @@
 export function apiHead(){
-    return 'http://' + location.hostname + '/api'
+    return 'https://' + location.hostname + '/api'
 }
