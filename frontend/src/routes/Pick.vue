@@ -75,7 +75,7 @@ onMounted(() =>{
 
 const pingButton = () =>{
     let data = JSON.parse(Cookies.get('DATA'))
-    axios.post(apiHead() + ':8005/lockers/ping', data)
+    axios.post(apiHead() + '/lockers/ping', data)
     .then((res) =>{
         console.log(res)
         message.success(res.data.msg)

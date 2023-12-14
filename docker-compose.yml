@@ -8,9 +8,10 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+    restart: unless-stopped
   pgadmin-thesis:
     image: dpage/pgadmin4
-    restart: always
+    restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
@@ -31,6 +32,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8005:8005
+    restart: unless-stopped
     depends_on:
       - mqtt-broker
       - db-thesis
@@ -41,6 +43,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:80
+    restart: unless-stopped
   nginx:
     build:
       context: ./nginx
@@ -48,6 +51,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    restart: unless-stopped
     depends_on:
       - frontend-thesis
       - backend-thesis
