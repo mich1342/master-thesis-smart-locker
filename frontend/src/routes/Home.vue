@@ -31,7 +31,7 @@ const onSearch = (e) =>{
     }
     console.log(data)
 
-    axios.post(apiHead() + ':8005/lockers/pickup', data)
+    axios.post(apiHead() + '/lockers/pickup', data)
     // axios.post('http://localhost:8005/lockers/pickup',data)
     .then((res) =>{
         console.log(res)

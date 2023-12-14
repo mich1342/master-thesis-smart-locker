@@ -7,7 +7,7 @@ from psycopg2 import errors
 conn, cur, db = pgconn.get_db()
 
 router = APIRouter(
-    prefix="/admin",
+    prefix="/api/admin",
     tags=["Admin"],
     responses={404: {"description": "Not Found"}},
 )

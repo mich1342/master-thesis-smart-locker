@@ -12,7 +12,7 @@ import random
 conn, cur, db = pgconn.get_db()
 
 router = APIRouter(
-    prefix="/lockers",
+    prefix="/api/lockers",
     tags=["Lockers"],
     responses={404: {"description": "Not Found"}},
 )

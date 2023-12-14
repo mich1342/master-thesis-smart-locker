@@ -49,7 +49,7 @@ const onDecode = (data) =>{
     let apiData = JSON.parse(Cookies.get('DATA'))
     apiData.qr_code = data
     console.log(apiData)
-    axios.post(apiHead() + ':8005/lockers/open_door', apiData)
+    axios.post(apiHead() + '/lockers/open_door', apiData)
     .then((res) =>{
         console.log(res)
         message.success(res.data.msg)
@@ -62,7 +62,7 @@ const onDecode = (data) =>{
 }
 onMounted(() =>{
     let data = JSON.parse(Cookies.get('DATA'))
-    axios.post(apiHead() + ':8005/lockers/pickup', data)
+    axios.post(apiHead() + '/lockers/pickup', data)
     .then((res) =>{
         console.log(res)
         transactionData.value = res.data.data

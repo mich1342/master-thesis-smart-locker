@@ -44,7 +44,7 @@ const onDecode = (e) =>{
         package_code: trackingNumber.value
     }
     console.log(data)
-    axios.post(apiHead() + ':8005/lockers/assign', data)
+    axios.post(apiHead() + '/lockers/assign', data)
     .then((res) =>{
         console.log(res)
         message.success(res.data.msg)
