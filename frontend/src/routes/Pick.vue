@@ -6,13 +6,14 @@
             </a-typography-title>
             <br/>
 
-            <a-button v-if="!startScan" type="primary" @click="startScan = true">Scan</a-button>
-            
+            <a-button v-if="!startScan" type="primary" @click="openScan">Scan</a-button>
             <div v-else class="stream">
-                <qr-stream @decode="onDecode" class="mb">
+                <!-- <qr-stream @decode="onDecode" class="mb">
                     <div style="color: green;" class="frame"></div>
                     
-                </qr-stream>
+                </qr-stream> -->
+                <div id="qr-code-full-region">
+                </div>
                 <br/>
                 <a-typography-title :level="5">Scan QR Code on the Locker</a-typography-title>
             </div>
@@ -38,11 +39,29 @@ import {message} from 'ant-design-vue'
 import Cookies from 'js-cookie'
 import router from '../router'
 import {QrStream} from 'vue3-qr-reader'
+import {Html5QrcodeScanner} from 'html5-qrcode'
 
 const transactionData = ref({})
 const startScan = ref(false)
 const scanValue = ref()
 const scanDone = ref(false)
+
+const config = {
+        fps: 1,
+        qrbox: 250,
+        rememberLastUsedCamera: true,
+        aspectRatio: 4/3,
+        showTorchButtonIfSupported: true,
+    }
+var html5QrcodeScanner = null
+onMounted(() =>{
+    html5QrcodeScanner = new Html5QrcodeScanner('qr-code-full-region', config);
+})
+
+const openScan = () =>{
+    startScan.value=true
+    html5QrcodeScanner.render(onDecode);
+}
 
 const onDecode = (data) =>{
     scanValue.value = data
