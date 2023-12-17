@@ -48,11 +48,13 @@ const scanValue = ref()
 const scanDone = ref(false)
 
 const config = {
-        fps: 1,
-        qrbox: 250,
+        fps: 10,
+        qrbox: 100,
         rememberLastUsedCamera: true,
         aspectRatio: 4/3,
         showTorchButtonIfSupported: true,
+        showZoomSliderIfSupported: true,
+        defaultZoomValueIfSupported: 2
     }
 var html5QrcodeScanner = null
 const openScan = () =>{
