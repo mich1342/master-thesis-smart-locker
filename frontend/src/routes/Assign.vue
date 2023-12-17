@@ -1,6 +1,6 @@
 <template>
     <div style="min-height: 100%;">
-        <div style="padding-top: 35vh;">
+        <div style="padding-top: 5vh;">
             
             <a-input
             v-model:value="trackingNumber"
