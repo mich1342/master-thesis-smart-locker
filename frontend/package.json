@@ -13,6 +13,7 @@
     "ant-design-vue": "^4.0.7",
     "axios": "^1.6.2",
     "js-cookie": "^3.0.5",
+    "html5-qrcode": "^2.3.8",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5",
     "vue3-qr-reader": "^1.0.0"
