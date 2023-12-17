@@ -1,6 +1,6 @@
 <template>
     <div style="min-height: 100%;">
-        <div style="padding-top: 35vh;">
+        <div style="padding-top: 5vh;">
             
             <a-input
             v-model:value="trackingNumber"
@@ -41,10 +41,12 @@ const lockerCode = ref('')
 const startScan = ref(false)
 const config = {
         fps: 1,
-        qrbox: 250,
+        qrbox: 125,
         rememberLastUsedCamera: true,
         aspectRatio: 4/3,
         showTorchButtonIfSupported: true,
+        showZoomSliderIfSupported: true,
+        defaultZoomValueIfSupported: 2
     }
 var html5QrcodeScanner = null
 onMounted(() =>{
@@ -74,6 +76,7 @@ const onDecode = (e) =>{
         trackingNumber.value = ""
         lockerCode.value = ""
         startScan.value = false
+        location.reload()
     })
     .catch((err) =>{
         message.error('Invalid Tracking Number')
@@ -81,5 +84,6 @@ const onDecode = (e) =>{
         lockerCode.value = ""
         startScan.value = false
     })
+    router.push('/assign')
 }
 </script>

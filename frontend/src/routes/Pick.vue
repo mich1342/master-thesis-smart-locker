@@ -12,10 +12,11 @@
                     <div style="color: green;" class="frame"></div>
                     
                 </qr-stream> -->
-                <div id="qr-code-full-region">
-                </div>
+                
                 <br/>
                 <a-typography-title :level="5">Scan QR Code on the Locker</a-typography-title>
+            </div>
+            <div id="qr-code-full-region">
             </div>
             <br/>
             <br/>
@@ -47,17 +48,15 @@ const scanValue = ref()
 const scanDone = ref(false)
 
 const config = {
-        fps: 1,
-        qrbox: 250,
+        fps: 10,
+        qrbox: 100,
         rememberLastUsedCamera: true,
         aspectRatio: 4/3,
         showTorchButtonIfSupported: true,
+        showZoomSliderIfSupported: true,
+        defaultZoomValueIfSupported: 2
     }
 var html5QrcodeScanner = null
-onMounted(() =>{
-    html5QrcodeScanner = new Html5QrcodeScanner('qr-code-full-region', config);
-})
-
 const openScan = () =>{
     startScan.value=true
     html5QrcodeScanner.render(onDecode);
@@ -80,6 +79,7 @@ const onDecode = (data) =>{
     })
 }
 onMounted(() =>{
+    html5QrcodeScanner = new Html5QrcodeScanner('qr-code-full-region', config);
     let data = JSON.parse(Cookies.get('DATA'))
     axios.post(apiHead() + '/lockers/pickup', data)
     .then((res) =>{
