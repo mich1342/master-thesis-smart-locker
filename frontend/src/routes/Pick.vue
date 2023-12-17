@@ -80,6 +80,9 @@ const onDecode = (data) =>{
 }
 onMounted(() =>{
     html5QrcodeScanner = new Html5QrcodeScanner('qr-code-full-region', config);
+    refreshData()
+})
+const refreshData = () =>{
     let data = JSON.parse(Cookies.get('DATA'))
     axios.post(apiHead() + '/lockers/pickup', data)
     .then((res) =>{
@@ -90,8 +93,7 @@ onMounted(() =>{
         message.error('Invalid Tracking Number')
         router.push('/')
     })
-})
-
+}
 const pingButton = () =>{
     let data = JSON.parse(Cookies.get('DATA'))
     axios.post(apiHead() + '/lockers/ping', data)

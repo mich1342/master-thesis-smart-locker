@@ -41,7 +41,7 @@ const lockerCode = ref('')
 const startScan = ref(false)
 const config = {
         fps: 1,
-        qrbox: 125,
+        qrbox: 200,
         rememberLastUsedCamera: true,
         aspectRatio: 4/3,
         showTorchButtonIfSupported: true,
