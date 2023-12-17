@@ -81,5 +81,6 @@ const onDecode = (e) =>{
         lockerCode.value = ""
         startScan.value = false
     })
+    router.push('/assign')
 }
 </script>
