@@ -41,6 +41,10 @@ import Cookies from 'js-cookie'
 import router from '../router'
 import {QrStream} from 'vue3-qr-reader'
 import {Html5QrcodeScanner} from 'html5-qrcode'
+import successFile from '../assets/beep-success.mp3'
+import failedFile from '../assets/beep-failed.mp3'
+const audioSuccess = new Audio(successFile)
+const audioFailed = new Audio(failedFile)
 
 const transactionData = ref({})
 const startScan = ref(false)
@@ -69,12 +73,14 @@ const onDecode = (data) =>{
     console.log(apiData)
     axios.post(apiHead() + '/lockers/open_door', apiData)
     .then((res) =>{
+        audioSuccess.play()
         console.log(res)
         message.success(res.data.msg)
         startScan.value = false
         scanDone.value = true
     })
     .catch((err) =>{
+        audioFailed.play()
         message.error('Invalid QR Code')
     })
 }
