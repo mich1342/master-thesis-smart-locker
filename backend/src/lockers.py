@@ -35,7 +35,7 @@ def connect(client, flags, rc, properties):
     cur.execute(f'''
                     SELECT 
                         locker,
-                        box,
+                        box
                     FROM
                         transaction
                 ''')
