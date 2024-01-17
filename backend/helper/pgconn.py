@@ -1,5 +1,6 @@
 import sys
 import psycopg2
+import time
 
 con = cur = db = None
 
@@ -21,6 +22,9 @@ def connect():
             if con:
                 con.rollback()
             print(psycopg2.DatabaseError)
+            print("Retry db connections in 5 seconds")
+            time.sleep(5)
+            print("Retry connection")
             # sys.exit()
 
 
