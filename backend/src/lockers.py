@@ -39,7 +39,7 @@ def connect(client, flags, rc, properties):
                     FROM
                         transaction
                 ''')
-    res = cur.fetchall
+    res = cur.fetchall()
     for x in res:
         print(x)
 
