@@ -21,7 +21,7 @@ def connect():
             if con:
                 con.rollback()
             print(psycopg2.DatabaseError)
-            sys.exit()
+            # sys.exit()
 
 
 def get_db():
