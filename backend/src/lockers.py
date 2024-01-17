@@ -32,6 +32,16 @@ mqtt.init_app(router)
 def connect(client, flags, rc, properties):
     mqtt.client.subscribe("+/+/transaction_done") 
     print("Connected: ", client, flags, rc, properties)
+    cur.execute(f'''
+                    SELECT 
+                        locker,
+                        box,
+                    FROM
+                        transaction
+                ''')
+    res = cur.fetchall
+    for x in res:
+        print(x)
 
 @mqtt.on_message()
 async def message(client, topic, payload, qos, properties):
