@@ -16,8 +16,6 @@
   </a-layout-content>
   <a-layout-footer style="text-align: center;">
     Smart Locker System ©2024 
-    <br/>
-    Created by Michael Jonathan MME SGU 2016
   </a-layout-footer>
 </a-layout>
 </template>
