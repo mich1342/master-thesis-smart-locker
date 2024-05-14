@@ -9,13 +9,15 @@
             />
             <br/>
             <br/>
-            <!-- <a-input-search
+            <a-input-search
             v-model:value="lockerCode"
             placeholder="input locker code"
             enter-button
             style="width: 250px"
             @search="onSearch"
-            /> -->
+            /> 
+            <br/>
+            <br/>
             <a-button v-if="!startScan" @click="openScan" type="primary">Scan Location</a-button>
             <br />
             <br />
@@ -69,6 +71,31 @@ const openScan = () =>{
 const onScanSuccess = (decodedText, decodedResult) =>{
     alert(decodedText)
     console.log(decodedText)
+}
+const onSearch = () =>{
+    let data = {
+        locker: lockerCode.value.split('/')[0],
+        box: lockerCode.value.split('/')[1],
+        package_code: trackingNumber.value
+    }
+    axios.post(apiHead() + '/lockers/assign', data)
+    .then((res) =>{
+        audioSuccess.play()
+        console.log(res)
+        message.success(res.data.msg)
+        trackingNumber.value = ""
+        lockerCode.value = ""
+        startScan.value = false
+        // location.reload()
+    })
+    .catch((err) =>{
+        audioFailed.play()
+        message.error('Invalid Tracking Number')
+        trackingNumber.value = ""
+        lockerCode.value = ""
+        startScan.value = false
+    })
+    router.push('/assign')
 }
 const onDecode = (e) =>{
     let data = {
